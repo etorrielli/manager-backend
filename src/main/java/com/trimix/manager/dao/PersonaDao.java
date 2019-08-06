@@ -35,7 +35,7 @@ public class PersonaDao {
     }
 
     public void update(Persona persona) throws Exception {
-        sessionFactory.getCurrentSession().save(persona);
+        sessionFactory.getCurrentSession().saveOrUpdate(persona);
         sessionFactory.getCurrentSession().flush();
     }
 

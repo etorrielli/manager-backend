@@ -1,7 +1,7 @@
 package com.trimix.manager.model;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
 
 @Entity
 @Table(name = "persona")
@@ -115,6 +115,17 @@ public class Persona {
         result = 31 * result + (int) (perNumeroDocumento ^ (perNumeroDocumento >>> 32));
         result = 31 * result + (perFechaNacimiento != null ? perFechaNacimiento.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Persona{" +
+                "perId=" + perId +
+                ", perNombre='" + perNombre + '\'' +
+                ", perApellido='" + perApellido + '\'' +
+                ", perNumeroDocumento=" + perNumeroDocumento +
+                ", perFechaNacimiento=" + perFechaNacimiento +
+                '}';
     }
 }
 

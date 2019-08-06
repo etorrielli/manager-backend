@@ -24,11 +24,8 @@ public class PersonaService {
 
     public Response save(PersonaDto personaDto) throws Exception {
         Response response = new Response();
-
-        Persona persona = personaDtoToEntity(personaDto);
+        Persona persona = personaDtoToEntity(null, personaDto);
         int id = personaDao.save(persona);
-
-
         response.setData(id);
         return response;
     }
@@ -44,9 +41,30 @@ public class PersonaService {
         return response;
     }
 
-    private Persona personaDtoToEntity(PersonaDto personaDto) throws Exception {
-        Persona persona = new Persona();
+    public Response update(PersonaDto personaDto) throws Exception {
+        Response response = new Response();
+        Persona persona = personaDao.get(personaDto.getPerId());
+        personaDao.update(personaDtoToEntity(persona, personaDto));
+        response.setMessage("Registro actualizado");
+        return response;
+    }
 
+    public Response delete(int id) throws Exception {
+        Response response = new Response();
+        personaDao.delete(id);
+        response.setMessage("Registro eliminado");
+        return response;
+    }
+
+    private Persona personaDtoToEntity(Persona persona, PersonaDto personaDto) throws Exception {
+        if (persona == null) {
+            persona = new Persona();
+        }
+        persona.setPerNombre(personaDto.getPerNombre());
+        persona.setPerApellido(personaDto.getPerApellido());
+        persona.setPerTipoDocumento(tipoDocumentoDao.get(personaDto.getPerTpoId()));
+        persona.setPerNumeroDocumento(personaDto.getPerNumeroDocumento());
+        persona.setPerFechaNacimiento(personaDto.getPerFechaNacimiento());
         return persona;
     }
 }
