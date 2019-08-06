@@ -1,0 +1,16 @@
+{
+	"clienteId": 6,
+	"folio": 55001,
+	"descripcion": "Fatura B",
+	"observacion": "Consumidor Final",
+	"detalles": [
+		{
+			"productoId": 6,
+			"cantidad": 30
+		},
+		{
+			"productoId": 7,
+			"cantidad": 40
+		}
+	]
+}
