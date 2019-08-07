@@ -30,8 +30,11 @@ public class PersonaService {
         return response;
     }
 
-    public Persona get(int id) throws EntityNotFoundException, Exception {
-        return personaDao.get(id);
+    public Response get(int id) throws EntityNotFoundException, Exception {
+        Response response = new Response();
+        PersonaDto personaDto = personaEntityToDto(personaDao.get(id));
+        response.setData(personaDto);
+        return response;
     }
 
     public Response list() throws Exception {
@@ -66,6 +69,18 @@ public class PersonaService {
         persona.setPerNumeroDocumento(personaDto.getPerNumeroDocumento());
         persona.setPerFechaNacimiento(personaDto.getPerFechaNacimiento());
         return persona;
+    }
+
+    private PersonaDto personaEntityToDto(Persona persona) throws Exception {
+        PersonaDto personaDto = new PersonaDto();
+        personaDto.setPerNombre(persona.getPerNombre());
+        personaDto.setPerApellido(persona.getPerApellido());
+        personaDto.setPerFechaNacimiento(persona.getPerFechaNacimiento());
+        personaDto.setFechaNacimientoFormat(persona.getFechaNacimientoFormat());
+        personaDto.setPerId(persona.getPerId());
+        personaDto.setPerNumeroDocumento(persona.getPerNumeroDocumento());
+        personaDto.setPerTpoId(persona.getPerTipoDocumento().getTpoId());
+        return personaDto;
     }
 }
 

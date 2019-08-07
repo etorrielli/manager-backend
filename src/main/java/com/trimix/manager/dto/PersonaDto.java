@@ -9,6 +9,15 @@ public class PersonaDto {
     private int perTpoId;
     private long perNumeroDocumento;
     private Date perFechaNacimiento;
+    private String fechaNacimientoFormat;
+
+    public String getFechaNacimientoFormat() {
+        return fechaNacimientoFormat;
+    }
+
+    public void setFechaNacimientoFormat(String fechaNacimientoFormat) {
+        this.fechaNacimientoFormat = fechaNacimientoFormat;
+    }
 
     public int getPerId() {
         return perId;

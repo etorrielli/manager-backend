@@ -1,6 +1,7 @@
 package com.trimix.manager.model;
 
 import javax.persistence.*;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
@@ -25,6 +26,8 @@ public class Persona {
     @Basic
     @Column(name = "per_fecha_nacimiento")
     private Date perFechaNacimiento;
+    @Transient
+    private String fechaNacimientoFormat;
 
     public Persona(){
 
@@ -38,6 +41,11 @@ public class Persona {
         this.perFechaNacimiento = perFechaNacimiento;
     }
 
+    public String getFechaNacimientoFormat() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        this.fechaNacimientoFormat = sdf.format(this.getPerFechaNacimiento());
+        return fechaNacimientoFormat;
+    }
 
     public int getPerId() {
         return perId;

@@ -25,9 +25,9 @@ public class PersonaController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Persona> get(@PathVariable("id") int id) throws EntityNotFoundException, Exception {
-        Persona persona = personaService.get(id);
-        return ResponseEntity.ok().body(persona);
+    public ResponseEntity<?> get(@PathVariable("id") int id) throws EntityNotFoundException, Exception {
+        Response response = personaService.get(id);
+        return ResponseEntity.ok().body(response);
     }
 
     @GetMapping()
