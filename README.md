@@ -9,7 +9,7 @@ Este repo contiene el backend que provee de servicios Rest al frontend.
 * Maven
 * Spring
 * Hibernate
-* Tomcat
+* Tomcat embebido de maven
 
 ### Build + Deploy + Run application (sobre la raiz del proyecto)
 * mvn clean install (genera artefacto: war)
